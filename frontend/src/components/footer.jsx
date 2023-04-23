@@ -4,14 +4,13 @@ const Footer = () => {
   const nowDate = new Date();
   function Updated() {
     const time = nowDate.toTimeString().slice(0, 9);
-    console.log(time);
     const date =
       nowDate.getDate() +
       "." +
       (nowDate.getMonth() + 1) +
       "." +
       nowDate.getFullYear() +
-      " klo " +
+      " at " +
       time;
     return date;
   }

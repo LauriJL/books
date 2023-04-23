@@ -9,7 +9,6 @@ import axios from "axios";
 
 const BookForm = (props) => {
   let bookIdProp = false;
-
   let bookData = [];
   if (props.value) {
     bookIdProp = true;
@@ -35,14 +34,19 @@ const BookForm = (props) => {
     formField.append("description", description);
     console.log("formField", formField);
 
-    await axios({
-      method: "post",
-      url: "http://localhost:8000/api/",
-      data: formField,
-    }).then((response) => {
-      console.log(response.data);
-      navigate("/");
-    });
+    try {
+      await axios({
+        method: "post",
+        url: "http://localhost:8000/api/",
+        data: formField,
+      }).then((response) => {
+        console.log(response.data);
+        navigate("");
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    props.fetchBooks();
   };
 
   const EditBook = async (id) => {
@@ -66,17 +70,13 @@ const BookForm = (props) => {
     } catch (e) {
       console.log(e);
     }
+    props.fetchBooks();
   };
 
   const DeleteBook = async (id) => {
     await axios.delete(`http://127.0.0.1:8000/api/${id}/`);
+    props.fetchBooks();
   };
-
-  // const ClearFields = () => {
-  //   setName("Enter title");
-  //   setAuthor("Enter author");
-  //   setDescription("Enter description");
-  // };
 
   return (
     <Container>
@@ -90,6 +90,7 @@ const BookForm = (props) => {
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
       </div>
       <div className="form-group">
@@ -99,8 +100,8 @@ const BookForm = (props) => {
           className="form-control form-control-lg"
           placeholder={bookIdProp ? bookData.author : "Author"}
           name="author"
-          value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          required
         />
       </div>
       <div className="form-group">
@@ -110,30 +111,33 @@ const BookForm = (props) => {
           className="form-control form-control-lg"
           placeholder={bookIdProp ? bookData.description : "Description"}
           name="description"
-          value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <br />
-      <button className="btn btn-success" onClick={AddBook}>
+
+      <button
+        className="btn btn-success m-2"
+        onClick={AddBook}
+        disabled={bookIdProp}
+      >
         Add New Book
       </button>
+
       <button
-        className="btn btn-primary"
+        className="btn btn-primary m-2"
         onClick={() => EditBook(props.value)}
         disabled={!bookIdProp}
       >
         Edit Book Info
       </button>
       <button
-        className="btn btn-danger"
+        className="btn btn-danger m-2"
         onClick={() => DeleteBook(props.value)}
+        disabled={!bookIdProp}
       >
         Delete Book
       </button>
-      {/* <button className="btn btn-warning" onClick={ClearFields}>
-        Clear Fields
-      </button> */}
     </Container>
   );
 };

@@ -16,7 +16,6 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/:id/update" Component={<BookForm />} />
           </Routes>
           <Footer />
         </div>
