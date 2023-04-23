@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./components/home";
+import BookForm from "./components/bookform";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/:id/update" Component={<BookForm />} />
           </Routes>
           <Footer />
         </div>
