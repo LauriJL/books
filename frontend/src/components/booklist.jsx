@@ -3,11 +3,13 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 
 // Assets
+import Pagination from "./pagination";
 
 const BookList = (props) => {
   const handleClick = (id) => {
     props.onChange(id);
   };
+  console.log("list: ", props);
   return (
     <Container className="col-md-6 col-2 text-start">
       <div className="row">
@@ -42,6 +44,11 @@ const BookList = (props) => {
           </div>
         </div>
       </div>
+      <Pagination
+        pagecount={props.pagecount}
+        next={props.nextpage}
+        prev={props.prevpage}
+      />
     </Container>
   );
 };
