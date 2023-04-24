@@ -15,6 +15,6 @@ class BookList(viewsets.ModelViewSet):
     #     item = self.kwargs.get('pk')
     #     return get_object_or_404(Books, id=item)
 
-    # Custom queryset
+    # # Custom queryset
     # def get_queryset(self):
     #     return Books.objects.all().order_by('name')
