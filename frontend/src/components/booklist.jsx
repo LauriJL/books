@@ -9,48 +9,33 @@ const BookList = (props) => {
   const handleClick = (id) => {
     props.onChange(id);
   };
-  const deleteBook = async (id) => {
-    await axios.delete(`http://127.0.0.1:8000/api/${id}/`);
-    props.fetchBooks();
-  };
+  console.log(props);
+  const id = props.id;
+
+  const tableSize = id
+    ? "col-md-8 col-2 text-start"
+    : "col-md-12 col-2 text-start";
   return (
-    <Container className="col-md-6 col-2 text-start">
+    <Container className={tableSize}>
       <div className="row">
         <div>
+          <br />
           <div className="row">
+            <br />{" "}
             <div className="table-responsive">
               <table className="table">
                 <thead>
                   <tr>
                     <th>Title</th>
                     <th>Author</th>
-                    <th></th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {props.books.map((item) => {
                     return (
-                      <tr key={item.id}>
+                      <tr key={item.id} onClick={() => handleClick(item.id)}>
                         <td>{item.name}</td>
                         <td>{item.author}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => handleClick(item.id)}
-                          >
-                            Info
-                          </button>
-                        </td>
-                        <td>
-                          {" "}
-                          <button
-                            className="btn btn-danger"
-                            onClick={() => deleteBook(item.id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
                       </tr>
                     );
                   })}

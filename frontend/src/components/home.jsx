@@ -27,11 +27,12 @@ const Home = () => {
       <div className="rowC">
         <BookList
           key={books.id}
+          id={id}
           books={books}
           onChange={setId}
           fetchBooks={fetchBooks}
         />
-        <BookForm value={id} books={books} fetchBooks={fetchBooks} />
+        {id && <BookForm value={id} books={books} fetchBooks={fetchBooks} />}
       </div>
     </Container>
   );

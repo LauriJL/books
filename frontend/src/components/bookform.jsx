@@ -1,5 +1,5 @@
 // Packages
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,9 @@ import Container from "react-bootstrap/Container";
 import axios from "axios";
 
 const BookForm = (props) => {
+  const [disableEdit, setDisableEdit] = useState(false);
+  const [disableAdd, setDisableAdd] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   let bookIdProp = false;
   let bookData = [];
   if (props.value) {
@@ -41,16 +44,20 @@ const BookForm = (props) => {
         data: formField,
       }).then((response) => {
         console.log(response.data);
-        navigate("");
+        window.location.reload();
       });
     } catch (e) {
-      console.log(e);
+      console.log("error: ", e);
+      setErrorMessage(e);
+      window.location.reload();
     }
     props.fetchBooks();
+    setDisableEdit(true);
   };
 
   const EditBook = async (id) => {
     let formField = new FormData();
+    formField.append("id", null);
     formField.append("name", name);
     formField.append("author", author);
     formField.append("description", description);
@@ -68,12 +75,21 @@ const BookForm = (props) => {
           navigate("/");
         });
     } catch (e) {
-      console.log(e);
+      console.log("error: ", e);
+      setErrorMessage(e);
     }
     props.fetchBooks();
+    setDisableAdd(true);
   };
 
-  const Clear = () => {
+  const deleteBook = async (id) => {
+    await axios.delete(`http://127.0.0.1:8000/api/${id}/`);
+    window.location.reload();
+  };
+
+  const Close = () => {
+    window.location.reload();
+    props.setToggleRefresh((prev) => !prev);
     document.getElementById("name").placeholder = "";
     document.getElementById("author").placeholder = "";
     document.getElementById("description").placeholder = "";
@@ -81,15 +97,15 @@ const BookForm = (props) => {
   };
 
   return (
-    <Container>
-      <div className="form-group">
-        <label>Title</label>
+    <Container className="col-md-4 col-2 text-start">
+      <div className="form-group form" validate>
+        <label className="label">Title</label>
         <input
           id="name"
           type="text"
           className="form-control form-control-lg"
           aria-label="Author"
-          placeholder={bookIdProp ? bookData.name : "Title"}
+          placeholder={bookIdProp ? bookData.name : "Enter title"}
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -97,51 +113,55 @@ const BookForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <label>Author</label>
+        <label className="label">Author</label>
         <input
           id="author"
           type="text"
           className="form-control form-control-lg"
-          placeholder={bookIdProp ? bookData.author : "Author"}
+          placeholder={bookIdProp ? bookData.author : "Enter author"}
           name="author"
           onChange={(e) => setAuthor(e.target.value)}
           required
         />
       </div>
       <div className="form-group">
-        <label>Description</label>
+        <label className="label">Description</label>
         <textarea
           id="description"
           type="text"
           className="form-control form-control-lg"
-          placeholder={bookIdProp ? bookData.description : "Description"}
+          placeholder={bookIdProp ? bookData.description : "Enter description"}
           name="description"
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
+      {errorMessage && <h4>{errorMessage}!</h4>}
       <br />
 
       <button
         className="btn btn-success m-2"
         onClick={AddBook}
-        disabled={bookIdProp}
+        disabled={disableAdd}
       >
-        Add New Book
+        Add New
       </button>
 
       <button
         className="btn btn-primary m-2"
         onClick={() => EditBook(props.value)}
-        disabled={!bookIdProp}
+        disabled={disableEdit}
       >
-        Edit Book Info
+        Edit
       </button>
       <button
-        className="btn btn-warning m-2"
-        onClick={() => Clear()}
-        disabled={!bookIdProp}
+        className="btn btn-danger m-2"
+        onClick={() => deleteBook(props.value)}
+        disabled={disableEdit}
       >
-        Clear
+        Delete
+      </button>
+      <button className="btn btn-warning m-2" onClick={Close}>
+        Close
       </button>
     </Container>
   );
