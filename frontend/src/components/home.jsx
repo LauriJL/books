@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 // Assets
@@ -24,6 +25,14 @@ const Home = () => {
 
   return (
     <Container>
+      {!books[0] && (
+        <div>
+          <h4>You have no books.</h4>
+          <Link className="btn btn-success m-2" to="/form">
+            Add a Book
+          </Link>
+        </div>
+      )}
       <div className="rowC">
         <BookList
           key={books.id}

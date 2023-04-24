@@ -16,6 +16,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/form" element={<BookForm />} />
           </Routes>
           <Footer />
         </div>

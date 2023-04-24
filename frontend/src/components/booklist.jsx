@@ -1,7 +1,6 @@
 // Packages
 import React from "react";
 import Container from "react-bootstrap/Container";
-import axios from "axios";
 
 // Assets
 
