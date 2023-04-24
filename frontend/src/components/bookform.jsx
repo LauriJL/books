@@ -73,8 +73,10 @@ const BookForm = (props) => {
     props.fetchBooks();
   };
 
-  const DeleteBook = async (id) => {
-    await axios.delete(`http://127.0.0.1:8000/api/${id}/`);
+  const Clear = () => {
+    document.getElementById("name").placeholder = "";
+    document.getElementById("author").placeholder = "";
+    document.getElementById("description").placeholder = "";
     props.fetchBooks();
   };
 
@@ -83,6 +85,7 @@ const BookForm = (props) => {
       <div className="form-group">
         <label>Title</label>
         <input
+          id="name"
           type="text"
           className="form-control form-control-lg"
           aria-label="Author"
@@ -96,6 +99,7 @@ const BookForm = (props) => {
       <div className="form-group">
         <label>Author</label>
         <input
+          id="author"
           type="text"
           className="form-control form-control-lg"
           placeholder={bookIdProp ? bookData.author : "Author"}
@@ -107,6 +111,7 @@ const BookForm = (props) => {
       <div className="form-group">
         <label>Description</label>
         <textarea
+          id="description"
           type="text"
           className="form-control form-control-lg"
           placeholder={bookIdProp ? bookData.description : "Description"}
@@ -132,11 +137,11 @@ const BookForm = (props) => {
         Edit Book Info
       </button>
       <button
-        className="btn btn-danger m-2"
-        onClick={() => DeleteBook(props.value)}
+        className="btn btn-warning m-2"
+        onClick={() => Clear()}
         disabled={!bookIdProp}
       >
-        Delete Book
+        Clear
       </button>
     </Container>
   );

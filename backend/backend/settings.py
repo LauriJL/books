@@ -35,11 +35,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 8
-}
-
 # CORS
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -130,4 +125,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# APPEND_SLASH = False
+APPEND_SLASH = False
