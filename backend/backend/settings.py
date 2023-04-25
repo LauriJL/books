@@ -87,6 +87,17 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'DEFAULT_PAGINATION_CLASS': 'main.pagination.CustomPagination',
+    'PAGE_SIZE': 8
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

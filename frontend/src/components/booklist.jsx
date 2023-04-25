@@ -11,6 +11,7 @@ const BookList = (props) => {
   const tableSize = id
     ? "col-md-8 col-2 text-start"
     : "col-md-12 col-2 text-start";
+
   return (
     <Container className={tableSize}>
       <div className="row">

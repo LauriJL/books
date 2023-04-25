@@ -106,7 +106,7 @@ const BookForm = (props) => {
   };
 
   return (
-    <Container className="col-md-4 col-2 text-start">
+    <Container className="col-md-5 col-2 text-start">
       <div className="form-group form">
         <label className="label">Title</label>
         <input
