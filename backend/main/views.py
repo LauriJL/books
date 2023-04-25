@@ -16,4 +16,4 @@ class BookList(viewsets.ModelViewSet):
 
     # Custom queryset
     def get_queryset(self):
-        return Books.objects.all().order_by('name')
+        return Books.objects.all().order_by('title')

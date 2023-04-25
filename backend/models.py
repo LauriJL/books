@@ -113,7 +113,8 @@ class DjangoSession(models.Model):
 
 
 class Books(models.Model):
-    name = models.CharField(max_length=100)
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
     description = models.TextField(blank=True, null=True)
 

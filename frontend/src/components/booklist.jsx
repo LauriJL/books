@@ -2,13 +2,10 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 
-// Assets
-
 const BookList = (props) => {
   const handleClick = (id) => {
     props.onChange(id);
   };
-  console.log(props);
   const id = props.id;
 
   const tableSize = id
@@ -33,7 +30,7 @@ const BookList = (props) => {
                   {props.books.map((item) => {
                     return (
                       <tr key={item.id} onClick={() => handleClick(item.id)}>
-                        <td>{item.name}</td>
+                        <td>{item.title}</td>
                         <td>{item.author}</td>
                       </tr>
                     );
