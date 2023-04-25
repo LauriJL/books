@@ -96,7 +96,7 @@ REST_FRAMEWORK = {
     # ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'DEFAULT_PAGINATION_CLASS': 'main.pagination.CustomPagination',
-    'PAGE_SIZE': 8
+    'PAGE_SIZE': 7
 }
 
 # Password validation
