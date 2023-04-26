@@ -9,6 +9,7 @@ RUN pip install --upgrade pip pipenv
 WORKDIR /backend
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+RUN pip install tzdata
 COPY ./Pipfile* ./
 RUN pipenv sync
 
