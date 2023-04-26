@@ -20,6 +20,7 @@
          - ./backend:/backend
        depends_on:
          - psql
+       command: bash -c "python manage.py runserver 0.0.0.0:8000"
     react:
        container_name: frontend
        build:
