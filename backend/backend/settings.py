@@ -40,6 +40,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = ['localhost:3000']
+CORS_ALLOW_HEADERS = ("x-requested-with", "content-type",
+                      "accept", "origin", "authorization", "x-csrftoken")
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
