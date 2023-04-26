@@ -9,8 +9,6 @@ RUN pip install --upgrade pip pipenv
 WORKDIR /backend
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-RUN pip install tzdata
-RUN pip install django-cors-headers
 COPY ./Pipfile* ./
 RUN pipenv sync
 

@@ -6,8 +6,6 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 
-// Assets
-
 import "../style.css";
 
 const BookForm = (props) => {

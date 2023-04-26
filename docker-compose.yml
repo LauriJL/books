@@ -1,13 +1,13 @@
    version: "3.8.4"
 
    services:
-    # psql:
-    #    container_name: db
-    #    image: "postgres:14.1-alpine"
-    #    environment:
-    #      - POSTGRES_DB=postgres
-    #      - POSTGRES_USER=admin
-    #      - POSTGRES_PASSWORD=password
+    psql:
+       container_name: db
+       image: "postgres:14.1-alpine"
+       environment:
+         - POSTGRES_DB=postgres
+         - POSTGRES_USER=admin
+         - POSTGRES_PASSWORD=password
     django:
        container_name: backend
        build:
@@ -18,9 +18,8 @@
          - 8000:8000
        volumes:
          - ./backend:/backend
-      #  depends_on:
-      #    - psql
-       command: bash -c "python manage.py runserver 0.0.0.0:8000"
+       depends_on:
+         - psql
     react:
        container_name: frontend
        build:
