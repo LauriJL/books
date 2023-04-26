@@ -2,10 +2,13 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 // Assets
-import Container from "react-bootstrap/Container";
+
 import "../style.css";
 
 const BookForm = (props) => {
@@ -22,6 +25,7 @@ const BookForm = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState(false);
 
   const AddBook = async () => {
     let formField = new FormData();
@@ -36,6 +40,8 @@ const BookForm = (props) => {
         data: formField,
       }).then((response) => {});
     } catch (error) {
+      setError(true);
+      console.log(error.response);
       return error.response;
     }
     window.location.reload();
@@ -55,6 +61,7 @@ const BookForm = (props) => {
         console.log(response.data);
       });
     } catch (error) {
+      setError(true);
       console.log(error.response);
       return error.response;
     }
@@ -81,6 +88,7 @@ const BookForm = (props) => {
           navigate("/");
         });
     } catch (error) {
+      setError(true);
       console.log(error.response);
       return error.response;
     }
@@ -108,6 +116,14 @@ const BookForm = (props) => {
   return (
     <Container className="col-md-5 col-2 text-start">
       <div className="form-group form">
+        {error && (
+          <Alert variant="danger" onClose={() => setError(false)} dismissible>
+            <Alert.Heading>Oops!</Alert.Heading>
+            <p>
+              Check your fields. Make sure you have entered Title and Author.
+            </p>
+          </Alert>
+        )}
         <label className="label">Title</label>
         <input
           required

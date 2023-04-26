@@ -69,7 +69,7 @@ const Home = () => {
       </div>
       {/* Pagination start */}
       {!id && (
-        <nav>
+        <div>
           <ul className="pagination justify-content-center">
             {!prevURL && (
               <li className="page-item">
@@ -102,7 +102,7 @@ const Home = () => {
               </li>
             )}
           </ul>
-        </nav>
+        </div>
       )}
 
       {/* Pagination end */}
