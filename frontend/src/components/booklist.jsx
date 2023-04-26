@@ -2,6 +2,9 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 
+// Assets
+import "../style.css";
+
 const BookList = (props) => {
   const handleClick = (id) => {
     props.onChange(id);

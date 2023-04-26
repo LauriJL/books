@@ -21,7 +21,7 @@ const Home = () => {
     SetBooks(response.results);
     console.log(response);
     // Page count
-    setTotalPages(Math.ceil(response.count / 8));
+    setTotalPages(Math.ceil(response.count / 7));
     // URL for next page
     if (response.next) {
       setNextURL(response.next);
@@ -68,40 +68,43 @@ const Home = () => {
         {id && <BookForm value={id} books={books} fetchBooks={fetchBooks} />}
       </div>
       {/* Pagination start */}
-      <nav>
-        <ul className="pagination justify-content-center">
-          {id && (
-            <li className="page-item">
-              <button className="page-link disabled">Previous</button>
-            </li>
-          )}
-          {prevURL && (
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => paginationHandler(prevURL)}
-              >
-                Previous
-              </button>
-            </li>
-          )}
-          {id && (
-            <li className="page-item">
-              <button className="page-link disabled">Next</button>
-            </li>
-          )}
-          {nextURL && (
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => paginationHandler(nextURL)}
-              >
-                Next
-              </button>
-            </li>
-          )}
-        </ul>
-      </nav>
+      {!id && (
+        <nav>
+          <ul className="pagination justify-content-center">
+            {!prevURL && (
+              <li className="page-item">
+                <button className="page-link disabled">Previous</button>
+              </li>
+            )}
+            {prevURL && (
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => paginationHandler(prevURL)}
+                >
+                  Previous
+                </button>
+              </li>
+            )}
+            {!nextURL && (
+              <li className="page-item">
+                <button className="page-link disabled">Next</button>
+              </li>
+            )}
+            {nextURL && (
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => paginationHandler(nextURL)}
+                >
+                  Next
+                </button>
+              </li>
+            )}
+          </ul>
+        </nav>
+      )}
+
       {/* Pagination end */}
     </Container>
   );

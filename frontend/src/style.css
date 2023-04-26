@@ -45,3 +45,8 @@
   .bookform textarea {
     height: 2vh;
   } 
+
+  .tableHeight {
+      height: 40vh;
+      /* overflow: auto; */
+    }
