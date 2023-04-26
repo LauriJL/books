@@ -1,5 +1,6 @@
 from pathlib import Path
 from decouple import config
+# from os import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,6 +74,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default':
+    # {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config('PSQL_NAME'),
+    #     'USER': config('PSQL_USER'),
+    #     'PASSWORD': config('PSQL_PASSWORD'),
+    #     'HOST': config('PSQL_HOST'),
+    #     'PORT': config('PSQL_PORT'),
+    # }
     # {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'Books',
