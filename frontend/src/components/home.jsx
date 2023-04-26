@@ -11,7 +11,7 @@ import "../style.css";
 const Home = () => {
   const [id, setId] = useState();
   const [books, SetBooks] = useState([]);
-  const linkBooks = "http://127.0.0.1:8000/api";
+  const linkBooks = "http://127.0.0.1:8000/api/";
   //Pagination
   // const [totalPages, setTotalPages] = useState(0);
   const [nextURL, setNextURL] = useState();
@@ -19,6 +19,7 @@ const Home = () => {
   const fetchBooks = async () => {
     let response = await (await fetch(linkBooks)).json();
     SetBooks(response.results);
+    console.log(response.results);
     // Page count
     // URL for next page
     if (response.next) {
