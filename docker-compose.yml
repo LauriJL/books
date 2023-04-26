@@ -18,8 +18,8 @@
          - 8000:8000
        volumes:
          - ./backend:/backend
-      #  depends_on:
-      #    - psql
+       depends_on:
+         - psql
     react:
        container_name: frontend
        build:
