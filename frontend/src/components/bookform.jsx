@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 // Assets
@@ -154,6 +153,7 @@ const BookForm = (props) => {
           id="description"
           type="text"
           className="form-control form-control-lg"
+          defaultValue={bookData.description}
           name="description"
           onChange={(e) => setDescription(e.target.value)}
         />
