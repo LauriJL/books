@@ -16,13 +16,20 @@ const Home = () => {
   // const [totalPages, setTotalPages] = useState(0);
   const [nextURL, setNextURL] = useState();
   const [prevURL, setPrevURL] = useState();
-  const opts = {
-    headers: {
-      mode: "cors",
-    },
-  };
-  const fetchBooks = async (opts) => {
-    let response = await (await fetch(linkBooks)).json();
+
+  const fetchBooks = async () => {
+    let response = await (
+      await fetch(
+        linkBooks +
+          {
+            method: "GET",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+      )
+    ).json();
     SetBooks(response.results);
     console.log(response.results);
     // Page count
